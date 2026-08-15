@@ -27,7 +27,7 @@ export function CertificateModal({ open, onClose, name, issuer, credential }: Ce
     }
   }, [open, onClose])
 
-  const isExpired = new Date() > new Date(credential.expires)
+  const isExpired = credential.expires ? new Date() > new Date(credential.expires) : false
 
   return (
     <AnimatePresence>
@@ -59,16 +59,21 @@ export function CertificateModal({ open, onClose, name, issuer, credential }: Ce
                 </h3>
                 <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-bone-500">
                   <span>Issued {credential.issued}</span>
-                  <span className={`inline-flex items-center gap-1.5 ${isExpired ? 'text-bone-500' : 'text-accent'}`}>
-                    <span className={`h-1.5 w-1.5 rounded-full ${isExpired ? 'bg-bone-500' : 'bg-accent'}`} />
-                    {isExpired ? `Expired ${credential.expires}` : `Valid through ${credential.expires}`}
-                  </span>
+                  {credential.expires && (
+                    <span className={`inline-flex items-center gap-1.5 ${isExpired ? 'text-bone-500' : 'text-accent'}`}>
+                      <span className={`h-1.5 w-1.5 rounded-full ${isExpired ? 'bg-bone-500' : 'bg-accent'}`} />
+                      {isExpired ? `Expired ${credential.expires}` : `Valid through ${credential.expires}`}
+                    </span>
+                  )}
+                  {credential.credentialId && (
+                    <span className="font-mono text-[11px] text-bone-600">ID {credential.credentialId}</span>
+                  )}
                 </div>
               </div>
 
               <div className="flex items-center gap-2">
                 <a
-                  href={credential.pdfUrl}
+                  href={credential.fileUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="rounded-full border border-bone-100/20 px-4 py-2 text-xs font-medium text-bone-100 transition-colors hover:border-accent/40 hover:text-accent"
@@ -76,7 +81,7 @@ export function CertificateModal({ open, onClose, name, issuer, credential }: Ce
                   Open in new tab
                 </a>
                 <a
-                  href={credential.pdfUrl}
+                  href={credential.fileUrl}
                   download
                   className="rounded-full bg-bone-100 px-4 py-2 text-xs font-medium text-ink-950 transition-transform hover:scale-[1.03]"
                 >
@@ -93,8 +98,12 @@ export function CertificateModal({ open, onClose, name, issuer, credential }: Ce
               </div>
             </div>
 
-            <div className="min-h-0 flex-1 bg-bone-100">
-              <iframe title={`${name} certificate PDF`} src={credential.pdfUrl} className="h-full w-full" />
+            <div className="min-h-0 flex-1 overflow-auto bg-bone-100">
+              {credential.kind === 'image' ? (
+                <img src={credential.fileUrl} alt={`${name} certificate`} className="mx-auto h-full w-full object-contain" />
+              ) : (
+                <iframe title={`${name} certificate PDF`} src={credential.fileUrl} className="h-full w-full" />
+              )}
             </div>
           </motion.div>
         </motion.div>
