@@ -13,10 +13,12 @@
 
 html {
   background: #07080a;
+  overflow-x: hidden;
 }
 
 body {
   @apply bg-ink-950 text-bone-100 antialiased;
+  overflow-x: hidden;
   font-feature-settings: 'ss01' 1, 'cv01' 1;
 }
 
