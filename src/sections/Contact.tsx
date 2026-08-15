@@ -48,6 +48,14 @@ export function Contact() {
             </Magnetic>
             <Magnetic>
               <a
+                href={profile.phoneHref}
+                className="rounded-full border border-bone-100/20 px-8 py-4 text-sm font-medium text-bone-100 transition-colors hover:border-bone-100/50"
+              >
+                {profile.phone}
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a
                 href={profile.linkedin}
                 target="_blank"
                 rel="noreferrer"

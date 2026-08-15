@@ -19,6 +19,9 @@ export function Footer() {
           <a href={`mailto:${profile.email}`} className="transition-colors hover:text-accent">
             Email
           </a>
+          <a href={profile.phoneHref} className="transition-colors hover:text-accent">
+            Phone
+          </a>
           <a href={profile.linkedin} target="_blank" rel="noreferrer" className="transition-colors hover:text-accent">
             LinkedIn
           </a>
