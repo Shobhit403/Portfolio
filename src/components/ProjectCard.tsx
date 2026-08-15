@@ -3,16 +3,17 @@ import type { Project } from '../data/projects'
 import { Reveal } from './Reveal'
 import { TechTag } from './TechTag'
 import { InViewVisual } from './visuals/InViewVisual'
+import { SpotlightCard } from './reactbits/SpotlightCard'
 
 export function ProjectCard({ project, delay = 0 }: { project: Project; delay?: number }) {
   const [hovered, setHovered] = useState(false)
 
   return (
     <Reveal delay={delay}>
-      <div
+      <SpotlightCard
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="group relative overflow-hidden rounded-[1.5rem] border border-bone-100/10 bg-ink-900/40 transition-colors hover:border-accent/30"
+        className="group overflow-hidden rounded-[1.5rem] border border-bone-100/10 bg-ink-900/40 transition-colors hover:border-accent/30"
       >
         <div data-cursor-label="View" className="aspect-[16/10] overflow-hidden border-b border-bone-100/10">
           <div className="h-full w-full transition-transform duration-500 group-hover:scale-[1.04]">
@@ -49,7 +50,7 @@ export function ProjectCard({ project, delay = 0 }: { project: Project; delay?: 
             ))}
           </div>
         </div>
-      </div>
+      </SpotlightCard>
     </Reveal>
   )
 }

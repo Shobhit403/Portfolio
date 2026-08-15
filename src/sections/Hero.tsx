@@ -2,6 +2,10 @@ import { motion } from 'framer-motion'
 import { Download } from 'lucide-react'
 import { profile } from '../data/profile'
 import { Magnetic } from '../components/MagneticButton'
+import { Aurora } from '../components/reactbits/Aurora'
+import { BlurText } from '../components/reactbits/BlurText'
+import { StarBorder } from '../components/reactbits/StarBorder'
+import { ClickSpark } from '../components/reactbits/ClickSpark'
 import heroImage from '../assets/images/shobhit-google-1.webp'
 
 const container = {
@@ -22,12 +26,7 @@ export function Hero() {
   return (
     <section id="home" className="relative flex min-h-[100svh] items-center overflow-hidden pt-28">
       <div className="pointer-events-none absolute inset-0 bg-grid-faint bg-[size:56px_56px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_20%,black,transparent)]" />
-      <motion.div
-        className="pointer-events-none absolute -top-40 right-0 h-[36rem] w-[36rem] rounded-full bg-accent/10 blur-[120px]"
-        whileInView={{ opacity: [0.5, 0.8, 0.5] }}
-        viewport={{ once: false }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-      />
+      <Aurora />
 
       <div className="relative mx-auto grid w-[min(92%,80rem)] grid-cols-1 items-center gap-y-20 md:grid-cols-[1.05fr_0.95fr] md:gap-x-12 lg:gap-x-16">
         <motion.div variants={container} initial="hidden" animate="visible" className="relative z-10">
@@ -35,35 +34,38 @@ export function Hero() {
             {profile.stack.join(' · ')}
           </motion.p>
 
-          <motion.h1
-            variants={item}
-            className="mt-6 text-balance font-display text-[15vw] font-semibold leading-[0.92] tracking-tightest text-bone-100 sm:text-7xl lg:text-[6.2rem]"
-          >
-            Shobhit
+          <h1 className="mt-6 text-balance font-display text-[15vw] font-semibold leading-[0.92] tracking-tightest text-bone-100 sm:text-7xl lg:text-[6.2rem]">
+            <BlurText text="Shobhit" delay={0.24} />
             <br />
-            Srivastava
-          </motion.h1>
+            <BlurText text="Srivastava" delay={0.55} />
+          </h1>
 
           <motion.p variants={item} className="mt-8 max-w-xl text-balance text-lg leading-relaxed text-bone-300 sm:text-xl">
             {profile.subline}
           </motion.p>
 
           <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-4">
+            <StarBorder>
+              <Magnetic className="w-full">
+                <ClickSpark className="block">
+                  <button
+                    onClick={() => scrollTo('work')}
+                    className="w-full rounded-full bg-bone-100 px-7 py-3.5 text-sm font-medium text-ink-950 transition-transform hover:scale-[1.03]"
+                  >
+                    View Work
+                  </button>
+                </ClickSpark>
+              </Magnetic>
+            </StarBorder>
             <Magnetic>
-              <button
-                onClick={() => scrollTo('work')}
-                className="rounded-full bg-bone-100 px-7 py-3.5 text-sm font-medium text-ink-950 transition-transform hover:scale-[1.03]"
-              >
-                View Work
-              </button>
-            </Magnetic>
-            <Magnetic>
-              <button
-                onClick={() => scrollTo('contact')}
-                className="rounded-full border border-bone-100/20 px-7 py-3.5 text-sm font-medium text-bone-100 transition-colors hover:border-bone-100/50"
-              >
-                Contact Me
-              </button>
+              <ClickSpark className="block">
+                <button
+                  onClick={() => scrollTo('contact')}
+                  className="rounded-full border border-bone-100/20 px-7 py-3.5 text-sm font-medium text-bone-100 transition-colors hover:border-bone-100/50"
+                >
+                  Contact Me
+                </button>
+              </ClickSpark>
             </Magnetic>
             <a
               href={profile.resumeUrl}
