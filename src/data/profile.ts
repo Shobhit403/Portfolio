@@ -7,7 +7,8 @@ export const profile = {
   location: 'Noida, Uttar Pradesh, India',
   email: 'srivastavashobhit903@gmail.com',
   linkedin: 'https://www.linkedin.com/in/shobhit-srivastava-b06498195',
-  resumeUrl: '/Shobhit-Srivastava-Resume.pdf',
+  github: 'https://github.com/Shobhit403',
+  resumeUrl: `${import.meta.env.BASE_URL}Shobhit-Srivastava-Resume.pdf`,
   stack: ['React', 'TypeScript', 'Python', 'GenAI', 'GCP', 'AWS'],
   yearsExperience: '3+',
 } as const

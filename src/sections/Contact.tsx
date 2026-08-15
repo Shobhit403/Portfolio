@@ -56,6 +56,16 @@ export function Contact() {
                 LinkedIn
               </a>
             </Magnetic>
+            <Magnetic>
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full border border-bone-100/20 px-8 py-4 text-sm font-medium text-bone-100 transition-colors hover:border-bone-100/50"
+              >
+                GitHub
+              </a>
+            </Magnetic>
           </div>
         </Reveal>
 

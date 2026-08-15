@@ -22,6 +22,9 @@ export function Footer() {
           <a href={profile.linkedin} target="_blank" rel="noreferrer" className="transition-colors hover:text-accent">
             LinkedIn
           </a>
+          <a href={profile.github} target="_blank" rel="noreferrer" className="transition-colors hover:text-accent">
+            GitHub
+          </a>
           <a href={profile.resumeUrl} download className="transition-colors hover:text-accent">
             Résumé
           </a>
