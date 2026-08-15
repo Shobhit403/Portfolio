@@ -1,0 +1,48 @@
+import { SectionHeading } from '../components/SectionHeading'
+import { Reveal } from '../components/Reveal'
+import { certifications, publication, education } from '../data/misc'
+
+export function Credentials() {
+  return (
+    <section id="credentials" className="relative mx-auto w-[min(92%,80rem)] overflow-hidden py-28 sm:py-36">
+      <div className="pointer-events-none absolute -right-40 bottom-0 -z-10 h-[30rem] w-[30rem] rounded-full bg-accent/[0.06] blur-[140px]" />
+      <SectionHeading eyebrow="Recognition" title="Certifications & research" />
+
+      <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {certifications.map((cert, i) => (
+          <Reveal key={cert.name} delay={i * 0.06}>
+            <div className="group h-full rounded-2xl border border-bone-100/10 bg-ink-900/40 p-6 transition-colors hover:border-accent/30">
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent/70">Certification</span>
+              <h3 className="mt-3 font-display text-lg font-semibold leading-snug text-bone-100">{cert.name}</h3>
+              <p className="mt-2 text-sm text-bone-400">{cert.issuer}</p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+
+      <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-[1.4fr_1fr]">
+        <Reveal delay={0.1}>
+          <div className="h-full rounded-2xl border border-bone-100/10 bg-gradient-to-br from-ink-900/60 to-ink-900/20 p-8">
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent/70">Publication</span>
+            <h3 className="mt-3 text-balance font-display text-2xl font-semibold leading-snug text-bone-100">
+              {publication.title}
+            </h3>
+            <p className="mt-3 text-sm text-bone-400">
+              {publication.journal} · {publication.date}
+            </p>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-bone-300">{publication.description}</p>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.18}>
+          <div className="h-full rounded-2xl border border-bone-100/10 bg-ink-900/40 p-8">
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent/70">Education</span>
+            <h3 className="mt-3 font-display text-xl font-semibold leading-snug text-bone-100">{education.degree}</h3>
+            <p className="mt-2 text-sm text-bone-400">{education.institution}</p>
+            <p className="mt-1 text-sm text-bone-500">{education.period} · {education.detail}</p>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
