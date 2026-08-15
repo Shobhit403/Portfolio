@@ -1,6 +1,7 @@
 import { Mail, Phone, Download } from 'lucide-react'
 import { FaLinkedin, FaGithub } from 'react-icons/fa6'
 import { profile } from '../data/profile'
+import { TechSkyline } from '../components/TechSkyline'
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -51,7 +52,9 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="mt-10 flex flex-col gap-2 border-t border-bone-100/5 pt-6 text-xs text-bone-500 sm:flex-row sm:items-center sm:justify-between">
+      <TechSkyline />
+
+      <div className="mt-6 flex flex-col gap-2 text-xs text-bone-500 sm:flex-row sm:items-center sm:justify-between">
         <span>© {new Date().getFullYear()} {profile.name}. All rights reserved.</span>
         <span>Designed &amp; engineered with curiosity.</span>
       </div>
