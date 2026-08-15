@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Download } from 'lucide-react'
 import { profile } from '../data/profile'
 import { Magnetic } from '../components/MagneticButton'
 import heroImage from '../assets/images/shobhit-google-1.webp'
@@ -70,7 +71,7 @@ export function Hero() {
               className="group flex items-center gap-2 px-2 py-3.5 text-sm font-medium text-bone-300 transition-colors hover:text-accent"
             >
               Download Résumé
-              <span className="transition-transform group-hover:translate-y-0.5">↓</span>
+              <Download className="h-4 w-4 transition-transform group-hover:translate-y-0.5" strokeWidth={1.75} />
             </a>
           </motion.div>
 

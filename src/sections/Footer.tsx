@@ -1,3 +1,5 @@
+import { Mail, Phone, Download } from 'lucide-react'
+import { FaLinkedin, FaGithub } from 'react-icons/fa6'
 import { profile } from '../data/profile'
 
 function scrollTo(id: string) {
@@ -15,20 +17,35 @@ export function Footer() {
           <p className="mt-1 text-sm text-bone-500">{profile.role} · React · Python · AI · Cloud</p>
         </div>
 
-        <div className="flex items-center gap-6 text-sm text-bone-400">
-          <a href={`mailto:${profile.email}`} className="transition-colors hover:text-accent">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-bone-400">
+          <a href={`mailto:${profile.email}`} className="flex items-center gap-1.5 transition-colors hover:text-accent">
+            <Mail className="h-3.5 w-3.5" strokeWidth={1.75} />
             Email
           </a>
-          <a href={profile.phoneHref} className="transition-colors hover:text-accent">
+          <a href={profile.phoneHref} className="flex items-center gap-1.5 transition-colors hover:text-accent">
+            <Phone className="h-3.5 w-3.5" strokeWidth={1.75} />
             Phone
           </a>
-          <a href={profile.linkedin} target="_blank" rel="noreferrer" className="transition-colors hover:text-accent">
+          <a
+            href={profile.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-1.5 transition-colors hover:text-accent"
+          >
+            <FaLinkedin className="h-3.5 w-3.5" />
             LinkedIn
           </a>
-          <a href={profile.github} target="_blank" rel="noreferrer" className="transition-colors hover:text-accent">
+          <a
+            href={profile.github}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-1.5 transition-colors hover:text-accent"
+          >
+            <FaGithub className="h-3.5 w-3.5" />
             GitHub
           </a>
-          <a href={profile.resumeUrl} download className="transition-colors hover:text-accent">
+          <a href={profile.resumeUrl} download className="flex items-center gap-1.5 transition-colors hover:text-accent">
+            <Download className="h-3.5 w-3.5" strokeWidth={1.75} />
             Résumé
           </a>
         </div>

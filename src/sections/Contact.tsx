@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { Mail, Phone, MapPin, Check } from 'lucide-react'
+import { FaLinkedin, FaGithub } from 'react-icons/fa6'
 import { SectionHeading } from '../components/SectionHeading'
 import { Reveal } from '../components/Reveal'
 import { Magnetic } from '../components/MagneticButton'
@@ -41,16 +43,18 @@ export function Contact() {
             <Magnetic>
               <button
                 onClick={copyEmail}
-                className="rounded-full bg-bone-100 px-8 py-4 text-sm font-medium text-ink-950 transition-transform hover:scale-[1.03]"
+                className="flex items-center gap-2.5 rounded-full bg-bone-100 px-8 py-4 text-sm font-medium text-ink-950 transition-transform hover:scale-[1.03]"
               >
+                {copied ? <Check className="h-4 w-4" strokeWidth={2} /> : <Mail className="h-4 w-4" strokeWidth={1.75} />}
                 {copied ? 'Copied to clipboard' : profile.email}
               </button>
             </Magnetic>
             <Magnetic>
               <a
                 href={profile.phoneHref}
-                className="rounded-full border border-bone-100/20 px-8 py-4 text-sm font-medium text-bone-100 transition-colors hover:border-bone-100/50"
+                className="flex items-center gap-2.5 rounded-full border border-bone-100/20 px-8 py-4 text-sm font-medium text-bone-100 transition-colors hover:border-bone-100/50"
               >
+                <Phone className="h-4 w-4" strokeWidth={1.75} />
                 {profile.phone}
               </a>
             </Magnetic>
@@ -59,8 +63,9 @@ export function Contact() {
                 href={profile.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-bone-100/20 px-8 py-4 text-sm font-medium text-bone-100 transition-colors hover:border-bone-100/50"
+                className="flex items-center gap-2.5 rounded-full border border-bone-100/20 px-8 py-4 text-sm font-medium text-bone-100 transition-colors hover:border-bone-100/50"
               >
+                <FaLinkedin className="h-3.5 w-3.5" />
                 LinkedIn
               </a>
             </Magnetic>
@@ -69,8 +74,9 @@ export function Contact() {
                 href={profile.github}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-bone-100/20 px-8 py-4 text-sm font-medium text-bone-100 transition-colors hover:border-bone-100/50"
+                className="flex items-center gap-2.5 rounded-full border border-bone-100/20 px-8 py-4 text-sm font-medium text-bone-100 transition-colors hover:border-bone-100/50"
               >
+                <FaGithub className="h-3.5 w-3.5" />
                 GitHub
               </a>
             </Magnetic>
@@ -78,7 +84,8 @@ export function Contact() {
         </Reveal>
 
         <Reveal delay={0.35}>
-          <p className="relative mt-10 font-mono text-xs uppercase tracking-[0.2em] text-bone-500">
+          <p className="relative mt-10 flex items-center justify-center gap-1.5 font-mono text-xs uppercase tracking-[0.2em] text-bone-500">
+            <MapPin className="h-3.5 w-3.5" strokeWidth={1.75} />
             {profile.location}
           </p>
         </Reveal>

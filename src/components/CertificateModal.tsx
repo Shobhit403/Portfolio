@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { ExternalLink, Download, X } from 'lucide-react'
 import type { CredentialDoc } from '../data/misc'
 
 interface CertificateModalProps {
@@ -67,15 +68,17 @@ export function CertificateModal({ open, onClose, name, issuer, credential }: Ce
                   href={credential.fileUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-full border border-bone-100/20 px-4 py-2 text-xs font-medium text-bone-100 transition-colors hover:border-accent/40 hover:text-accent"
+                  className="flex items-center gap-1.5 rounded-full border border-bone-100/20 px-4 py-2 text-xs font-medium text-bone-100 transition-colors hover:border-accent/40 hover:text-accent"
                 >
+                  <ExternalLink className="h-3.5 w-3.5" strokeWidth={1.75} />
                   Open in new tab
                 </a>
                 <a
                   href={credential.fileUrl}
                   download
-                  className="rounded-full bg-bone-100 px-4 py-2 text-xs font-medium text-ink-950 transition-transform hover:scale-[1.03]"
+                  className="flex items-center gap-1.5 rounded-full bg-bone-100 px-4 py-2 text-xs font-medium text-ink-950 transition-transform hover:scale-[1.03]"
                 >
+                  <Download className="h-3.5 w-3.5" strokeWidth={1.75} />
                   Download
                 </a>
                 <button
@@ -84,7 +87,7 @@ export function CertificateModal({ open, onClose, name, issuer, credential }: Ce
                   aria-label="Close certificate viewer"
                   className="ml-1 flex h-8 w-8 items-center justify-center rounded-full text-bone-400 transition-colors hover:bg-bone-100/10 hover:text-bone-100"
                 >
-                  ✕
+                  <X className="h-4 w-4" strokeWidth={1.75} />
                 </button>
               </div>
             </div>
