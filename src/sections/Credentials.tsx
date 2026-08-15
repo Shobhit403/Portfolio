@@ -42,15 +42,14 @@ export function Credentials() {
                     {cert.issuer}
                   </span>
                   <h3 className="mt-3 font-display text-lg font-semibold leading-snug text-bone-100">{cert.name}</h3>
-                  <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-bone-500">
-                    <span>Issued {cert.credential.issued}</span>
-                    {cert.credential.expires && (
+                  {cert.credential.expires && (
+                    <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-bone-500">
                       <span className={`inline-flex items-center gap-1.5 ${isExpired ? 'text-bone-500' : 'text-accent'}`}>
                         <span className={`h-1.5 w-1.5 rounded-full ${isExpired ? 'bg-bone-500' : 'bg-accent'}`} />
                         {isExpired ? 'Expired' : 'Active'}
                       </span>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
               </button>
             </Reveal>
