@@ -10,7 +10,7 @@ export const profile = {
   phoneHref: 'tel:+917318560509',
   linkedin: 'https://www.linkedin.com/in/shobhit-srivastava-b06498195',
   github: 'https://github.com/Shobhit403',
-  resumeUrl: `${import.meta.env.BASE_URL}Shobhit-Srivastava-Resume.pdf`,
+  resumeUrl: `${import.meta.env.BASE_URL}Shobhit_Srivastava_Resume.pdf`,
   stack: ['React', 'TypeScript', 'Python', 'GenAI', 'GCP', 'AWS'],
   yearsExperience: '3+',
 } as const
