@@ -18,43 +18,32 @@ export function Credentials() {
       />
 
       <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {certifications.map((cert, i) => {
-          const isExpired = cert.credential.expires ? new Date() > new Date(cert.credential.expires) : false
-          return (
-            <Reveal key={cert.name} delay={i * 0.06}>
-              <button
-                onClick={() => setOpenCert(cert.name)}
-                data-cursor-label="View"
-                aria-label={`View ${cert.name} certificate`}
-                className="group block h-full w-full overflow-hidden rounded-2xl border border-bone-100/10 bg-ink-900/40 text-left transition-colors hover:border-accent/30"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden border-b border-bone-100/10 bg-bone-100/[0.03]">
-                  <img
-                    src={cert.credential.thumbnail}
-                    alt={`${cert.name} certificate preview`}
-                    className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                </div>
-                <div className="p-6">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent/70">
-                    {cert.issuer}
-                  </span>
-                  <h3 className="mt-3 font-display text-lg font-semibold leading-snug text-bone-100">{cert.name}</h3>
-                  {cert.credential.expires && (
-                    <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-bone-500">
-                      <span className={`inline-flex items-center gap-1.5 ${isExpired ? 'text-bone-500' : 'text-accent'}`}>
-                        <span className={`h-1.5 w-1.5 rounded-full ${isExpired ? 'bg-bone-500' : 'bg-accent'}`} />
-                        {isExpired ? 'Expired' : 'Active'}
-                      </span>
-                    </div>
-                  )}
-                </div>
-              </button>
-            </Reveal>
-          )
-        })}
+        {certifications.map((cert, i) => (
+          <Reveal key={cert.name} delay={i * 0.06}>
+            <button
+              onClick={() => setOpenCert(cert.name)}
+              data-cursor-label="View"
+              aria-label={`View ${cert.name} certificate`}
+              className="group block h-full w-full overflow-hidden rounded-2xl border border-bone-100/10 bg-ink-900/40 text-left transition-colors hover:border-accent/30"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden border-b border-bone-100/10 bg-bone-100/[0.03]">
+                <img
+                  src={cert.credential.thumbnail}
+                  alt={`${cert.name} certificate preview`}
+                  className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              </div>
+              <div className="p-6">
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent/70">
+                  {cert.issuer}
+                </span>
+                <h3 className="mt-3 font-display text-lg font-semibold leading-snug text-bone-100">{cert.name}</h3>
+              </div>
+            </button>
+          </Reveal>
+        ))}
       </div>
 
       <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-[1.4fr_1fr]">

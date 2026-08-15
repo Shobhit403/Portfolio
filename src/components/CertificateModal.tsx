@@ -27,8 +27,6 @@ export function CertificateModal({ open, onClose, name, issuer, credential }: Ce
     }
   }, [open, onClose])
 
-  const isExpired = credential.expires ? new Date() > new Date(credential.expires) : false
-
   return (
     <AnimatePresence>
       {open && (
@@ -57,17 +55,9 @@ export function CertificateModal({ open, onClose, name, issuer, credential }: Ce
                 <h3 id="cert-modal-title" className="mt-1.5 font-display text-xl font-semibold text-bone-100">
                   {name}
                 </h3>
-                {(credential.expires || credential.credentialId) && (
+                {credential.credentialId && (
                   <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-bone-500">
-                    {credential.expires && (
-                      <span className={`inline-flex items-center gap-1.5 ${isExpired ? 'text-bone-500' : 'text-accent'}`}>
-                        <span className={`h-1.5 w-1.5 rounded-full ${isExpired ? 'bg-bone-500' : 'bg-accent'}`} />
-                        {isExpired ? `Expired ${credential.expires}` : `Valid through ${credential.expires}`}
-                      </span>
-                    )}
-                    {credential.credentialId && (
-                      <span className="font-mono text-[11px] text-bone-600">ID {credential.credentialId}</span>
-                    )}
+                    <span className="font-mono text-[11px] text-bone-600">ID {credential.credentialId}</span>
                   </div>
                 )}
               </div>
