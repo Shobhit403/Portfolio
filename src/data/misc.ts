@@ -1,11 +1,43 @@
+import gcpArchitectThumb from '../assets/certificates/gcp-architect.webp'
+import gcpDeveloperThumb from '../assets/certificates/gcp-developer.webp'
+
+export interface CredentialDoc {
+  thumbnail: string
+  pdfUrl: string
+  issued: string
+  expires: string
+  credentialId: string
+}
+
 export interface Certification {
   name: string
   issuer: string
+  credential?: CredentialDoc
 }
 
 export const certifications: Certification[] = [
-  { name: 'Professional Cloud Architect', issuer: 'Google Cloud' },
-  { name: 'Professional Cloud Developer', issuer: 'Google Cloud' },
+  {
+    name: 'Professional Cloud Architect',
+    issuer: 'Google Cloud',
+    credential: {
+      thumbnail: gcpArchitectThumb,
+      pdfUrl: `${import.meta.env.BASE_URL}certificates/gcp-professional-cloud-architect.pdf`,
+      issued: '27 Nov 2023',
+      expires: '27 Nov 2025',
+      credentialId: '46e320134d7e4fbaad864a18547ee593',
+    },
+  },
+  {
+    name: 'Professional Cloud Developer',
+    issuer: 'Google Cloud',
+    credential: {
+      thumbnail: gcpDeveloperThumb,
+      pdfUrl: `${import.meta.env.BASE_URL}certificates/gcp-professional-cloud-developer.pdf`,
+      issued: '10 May 2025',
+      expires: '10 May 2027',
+      credentialId: '1f6b4378790d4afc820d45fcd9ad73a9',
+    },
+  },
   { name: 'Developer Virtual Experience Program', issuer: 'Accenture Nordics' },
   { name: 'Mindsweeper Uttar Pradesh Zonals', issuer: 'Cognizance 2021, IIT Roorkee' },
   { name: 'KODATION', issuer: 'GeeksforGeeks' },
