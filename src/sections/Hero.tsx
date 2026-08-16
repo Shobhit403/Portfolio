@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { Download } from 'lucide-react'
 import { profile } from '../data/profile'
 import { Magnetic } from '../components/MagneticButton'
@@ -6,6 +7,7 @@ import { Aurora } from '../components/reactbits/Aurora'
 import { BlurText } from '../components/reactbits/BlurText'
 import { StarBorder } from '../components/reactbits/StarBorder'
 import { ClickSpark } from '../components/reactbits/ClickSpark'
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 import heroImage from '../assets/images/shobhit-google-1.webp'
 
 const container = {
@@ -23,12 +25,20 @@ function scrollTo(id: string) {
 }
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const reduced = usePrefersReducedMotion()
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] })
+  const pullScale = useTransform(scrollYProgress, [0, 1], [1, 0.92])
+  const pullOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.2])
+
   return (
-    <section id="home" className="relative flex min-h-[100svh] items-center overflow-hidden pt-28">
+    <section ref={sectionRef} id="home" className="relative flex min-h-[100svh] items-center overflow-hidden pt-28">
       <div className="pointer-events-none absolute inset-0 bg-grid-faint bg-[size:56px_56px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_20%,black,transparent)]" />
       <Aurora />
 
-      <div className="relative mx-auto grid w-[min(92%,80rem)] grid-cols-1 items-center gap-y-20 md:grid-cols-[1.05fr_0.95fr] md:gap-x-12 lg:gap-x-16">
+      <motion.div
+        style={reduced ? undefined : { scale: pullScale, opacity: pullOpacity }}
+        className="relative mx-auto grid w-[min(92%,80rem)] grid-cols-1 items-center gap-y-20 md:grid-cols-[1.05fr_0.95fr] md:gap-x-12 lg:gap-x-16">
         <motion.div variants={container} initial="hidden" animate="visible" className="relative z-10">
           <motion.p variants={item} className="font-mono text-sm tracking-[0.3em] text-accent">
             {profile.stack.join(' · ')}
@@ -107,7 +117,7 @@ export function Hero() {
             <div className="absolute inset-0 ring-1 ring-inset ring-bone-100/10" />
           </div>
         </motion.div>
-      </div>
+      </motion.div>
 
       <motion.div
         initial={{ opacity: 0 }}

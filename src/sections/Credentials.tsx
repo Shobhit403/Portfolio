@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { SectionHeading } from '../components/SectionHeading'
 import { Reveal } from '../components/Reveal'
 import { CertificateModal } from '../components/CertificateModal'
+import { TiltCard } from '../components/reactbits/TiltCard'
 import { certifications, publication, education } from '../data/misc'
 
 export function Credentials() {
@@ -20,28 +21,30 @@ export function Credentials() {
       <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {certifications.map((cert, i) => (
           <Reveal key={cert.name} delay={i * 0.06}>
-            <button
-              onClick={() => setOpenCert(cert.name)}
-              data-cursor-label="View"
-              aria-label={`View ${cert.name} certificate`}
-              className="group block h-full w-full overflow-hidden rounded-2xl border border-bone-100/10 bg-ink-900/40 text-left transition-colors hover:border-accent/30"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden border-b border-bone-100/10 bg-bone-100/[0.03]">
-                <img
-                  src={cert.credential.thumbnail}
-                  alt={`${cert.name} certificate preview`}
-                  className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              </div>
-              <div className="p-6">
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent/70">
-                  {cert.issuer}
-                </span>
-                <h3 className="mt-3 font-display text-lg font-semibold leading-snug text-bone-100">{cert.name}</h3>
-              </div>
-            </button>
+            <TiltCard>
+              <button
+                onClick={() => setOpenCert(cert.name)}
+                data-cursor-label="View"
+                aria-label={`View ${cert.name} certificate`}
+                className="group block h-full w-full overflow-hidden rounded-2xl border border-bone-100/10 bg-ink-900/40 text-left transition-colors hover:border-accent/30"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden border-b border-bone-100/10 bg-bone-100/[0.03]">
+                  <img
+                    src={cert.credential.thumbnail}
+                    alt={`${cert.name} certificate preview`}
+                    className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                </div>
+                <div className="p-6">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent/70">
+                    {cert.issuer}
+                  </span>
+                  <h3 className="mt-3 font-display text-lg font-semibold leading-snug text-bone-100">{cert.name}</h3>
+                </div>
+              </button>
+            </TiltCard>
           </Reveal>
         ))}
       </div>

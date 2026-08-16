@@ -1,12 +1,17 @@
-import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { useRef, useState } from 'react'
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import type { Project } from '../data/projects'
 import { Reveal } from './Reveal'
 import { TechTag } from './TechTag'
 import { InViewVisual } from './visuals/InViewVisual'
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 
 export function FeaturedProject({ project, reverse = false }: { project: Project; reverse?: boolean }) {
   const [open, setOpen] = useState(false)
+  const visualRef = useRef<HTMLDivElement>(null)
+  const reduced = usePrefersReducedMotion()
+  const { scrollYProgress } = useScroll({ target: visualRef, offset: ['start end', 'end start'] })
+  const parallaxY = useTransform(scrollYProgress, [0, 1], ['-5%', '5%'])
 
   return (
     <Reveal className="border-t border-bone-100/10 py-16 first:border-t-0 first:pt-0 sm:py-20">
@@ -53,22 +58,26 @@ export function FeaturedProject({ project, reverse = false }: { project: Project
         </div>
 
         <div className={reverse ? 'md:[direction:ltr]' : ''}>
-          {project.caseStudy ? (
-            <button
-              type="button"
-              onClick={() => setOpen((v) => !v)}
-              aria-label={`${open ? 'Hide' : 'View'} case study for ${project.name}`}
-              aria-expanded={open}
-              data-cursor-label={open ? 'Close' : 'Explore'}
-              className="block aspect-[4/3] w-full overflow-hidden rounded-[1.75rem] border border-bone-100/10 bg-ink-900/40 text-left transition-colors hover:border-accent/30"
-            >
-              <InViewVisual variant={project.visual} />
-            </button>
-          ) : (
-            <div className="aspect-[4/3] w-full overflow-hidden rounded-[1.75rem] border border-bone-100/10 bg-ink-900/40">
-              <InViewVisual variant={project.visual} />
-            </div>
-          )}
+          <div ref={visualRef} className="overflow-hidden rounded-[1.75rem]">
+            <motion.div style={reduced ? undefined : { y: parallaxY }}>
+              {project.caseStudy ? (
+                <button
+                  type="button"
+                  onClick={() => setOpen((v) => !v)}
+                  aria-label={`${open ? 'Hide' : 'View'} case study for ${project.name}`}
+                  aria-expanded={open}
+                  data-cursor-label={open ? 'Close' : 'Explore'}
+                  className="block aspect-[4/3] w-full rounded-[1.75rem] border border-bone-100/10 bg-ink-900/40 text-left transition-colors hover:border-accent/30"
+                >
+                  <InViewVisual variant={project.visual} />
+                </button>
+              ) : (
+                <div className="aspect-[4/3] w-full rounded-[1.75rem] border border-bone-100/10 bg-ink-900/40">
+                  <InViewVisual variant={project.visual} />
+                </div>
+              )}
+            </motion.div>
+          </div>
         </div>
       </div>
 
